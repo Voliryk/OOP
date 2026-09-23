@@ -1,0 +1,11 @@
+#include <iostream>
+int main()
+
+int a;{
+std::cout << "\n Ведіть число = ";
+std::cin >> a;
+
+if (a%2 != 0 || (99> a && a<1000) )
+std::cout << "true";
+else std::cout << "false";
+}
