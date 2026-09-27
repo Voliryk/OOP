@@ -1,0 +1,14 @@
+#include <iostream>
+
+int main() {
+    int n;
+    std::cout << "Введіть n: ";
+    std::cin >> n;
+    double y = 0.0;
+    for (int i = 6; i <= n; i++) {
+        double numerator = 3.0 + i;
+        double denominator = (i - 2.0) + 2.0;
+    }
+    std::cout << "y = " << y << std::endl;
+    return 0;
+}
