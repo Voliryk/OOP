@@ -1,0 +1,15 @@
+#include <iostream>
+
+int main() {
+    int s = 200;
+    for (int x = 0; x <= s / 3; x++) {
+        for (int y = 0; y <= s / 4; y++) {
+            for (int z = 0; z <= s / 5; z++) {
+                if (3 * x + 4 * y + 5 * z == s) {
+                    std::cout << "3t: " << x << ", 4t: " << y << ", 5t: " << z << "\n";
+                }
+            }
+        }
+    }
+    return 0;
+}
