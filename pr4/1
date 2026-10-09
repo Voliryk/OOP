@@ -1,0 +1,33 @@
+#include <iostream>
+#include <cmath>
+#include <windows.h> 
+int main() {
+    SetConsoleCP(65001);
+    SetConsoleOutputCP(65001);
+    int n;
+    std::cout << "Введіть розмір масиву: ";
+    std::cin >> n;
+
+    double arr[100];
+    std::cout << "Введіть елементи масиву:\n";
+    for (int i = 0; i < n; i++) {
+        std::cin >> arr[i];
+    }
+
+    int count7 = 0;
+
+    std::cout << "Непарні елементи: ";
+    for (int i = 0; i < n; i++) {
+        int val = arr[i];
+        if (val == arr[i] && val % 2 != 0) {
+            std::cout << arr[i] << " ";
+        }
+
+        if (std::abs(arr[i]) == 7) {
+            count7++;
+        }
+    }
+
+    std::cout << "\nКількість елементів із модулем 7: " << count7 << "\n";
+    return 0;
+}
