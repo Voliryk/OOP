@@ -1,0 +1,45 @@
+#include <iostream>
+#include <windows.h> 
+
+int getMaxDigitSeries(const char* str) {
+    int current_length = 0; 
+    int max_length =     0; 
+
+
+    while (*str != '\0') {
+   
+        if (*str == '.') {
+            break; 
+        }
+
+       
+        if (*str >= '0' && *str <= '9') {
+            current_length++; 
+            if (current_length > max_length) {
+                max_length = current_length; 
+            }
+        } else {
+            current_length = 0; 
+        }
+
+        str++;
+    }
+
+    return max_length;
+}
+
+int main() {
+    SetConsoleCP(65001);
+    SetConsoleOutputCP(65001);
+
+    char text[256]; 
+
+    std::cout << "Введіть текст (в кінці поставте крапку):\n";
+    std::cin.getline(text, sizeof(text));
+
+
+    int result = getMaxDigitSeries(text);
+    std::cout << "\nДовжина максимальної серії цифр: " << result << std::endl;
+
+    return 0;
+}
