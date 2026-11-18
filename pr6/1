@@ -1,0 +1,32 @@
+#include <iostream>
+#include <cmath>
+#include <windows.h>
+#include <iomanip>
+
+
+double getArea(int* n, double* a) {
+    double pi = 3.1415926535;
+    return (*n * (*a) * (*a)) / (4.0 * std::tan(pi / *n));
+}
+
+int main() {
+    SetConsoleCP(65001);
+    SetConsoleOutputCP(65001);
+
+    for (int i = 1; i <= 7; i++) {
+        int n;
+        double a;
+
+        std::cout << "Многокутник №" << i << "\n";
+        std::cout << "Введіть кількість сторін (n): ";
+        std::cin >> n;
+        std::cout << "Введіть довжину сторони (a): ";
+        std::cin >> a;
+
+        double area = getArea(&n, &a);
+
+        std::cout << "Площа = " << std::fixed << std::setprecision(4) << area << "\n\n";
+    }
+
+    return 0;
+}
