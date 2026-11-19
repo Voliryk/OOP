@@ -1,0 +1,134 @@
+#include <iostream>
+#include <string>
+#include <windows.h>
+#include <iomanip>
+
+
+class Purchase {
+private:
+    double price; 
+    int day;      
+    int month; 
+    int year;   
+
+public:
+
+    Purchase() {
+        price = 0;
+        day = 1;
+        month = 1;
+        year = 2020;
+    }
+
+
+    Purchase(double p, int d, int m, int y) {
+        price = p;
+        day = d;
+        month = m;
+        year = y;
+    }
+
+    Purchase(const Purchase& other) {
+        price = other.price;
+        day = other.day;
+        month = other.month;
+        year = other.year;
+    }
+
+
+    Purchase(double p) {
+        price = p;
+        day = 31;
+        month = 12;
+        year = 2020;
+    }
+
+
+    ~Purchase() {
+    }
+
+
+    void setPrice(double p) {
+        price = p;
+    }
+
+    void setDate(int d, int m, int y) {
+        day = d;
+        month = m;
+        year = y;
+    }
+
+
+    double getPrice() {
+        return price;
+    }
+
+    int getDay() {
+        return day;
+    }
+
+    int getMonth() {
+        return month;
+    }
+
+    int getYear() {
+        return year;
+    }
+
+  
+    double getDiscountedCost() {
+        return price * 0.85;
+    }
+
+
+    bool isUsable() {
+        int todayDay = 2;
+        int todayMonth = 3;
+        int todayYear = 2020;
+
+        if (year != todayYear) {
+            return year > todayYear;
+        }
+        if (month != todayMonth) {
+            return month > todayMonth;
+        }
+        return day >= todayDay;
+    }
+
+
+    void print() {
+        std::cout << "Ціна: " << std::fixed << std::setprecision(2) << price << " грн\n";
+        std::cout << "Термін придатності: " << day << "." << month << "." << year << "\n";
+        std::cout << "Вартість із знижкою 15%: " << getDiscountedCost() << " грн\n";
+        std::cout << "Придатний для використання (на 02.03.2020): ";
+        if (isUsable()) {
+            std::cout << "так\n";
+        } else {
+            std::cout << "ні\n";
+        }
+    }
+};
+
+int main() {
+    SetConsoleCP(65001);
+    SetConsoleOutputCP(65001);
+
+
+    Purchase p1(250.50, 15, 5, 2020);
+    std::cout << "Покупка 1:\n";
+    p1.print();
+
+
+    Purchase p2 = p1;
+    p2.setPrice(120.00);
+    p2.setDate(20, 2, 2020);
+    std::cout << "\nПокупка 2 (копія зі зміненими даними):\n";
+    p2.print();
+
+
+    Purchase p3 = 99.90;
+    std::cout << "\nПокупка 3 (створена з числа 99.90):\n";
+    p3.print();
+
+    return 0;
+}
