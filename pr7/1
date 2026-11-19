@@ -1,0 +1,50 @@
+#include <iostream>
+#include <windows.h>
+#include <iomanip>
+
+// Клас Circle описує коло із властивістю "радіус"
+class Circle {
+private:
+    double radius; // радіус кола
+
+public:
+    // set-метод: встановлює радіус
+    void setRadius(double r) {
+        radius = r;
+    }
+
+    // get-метод: повертає радіус
+    double getRadius() {
+        return radius;
+    }
+
+    // площа круга: S = pi * R^2
+    double getArea() {
+        return 3.1415926535 * radius * radius;
+    }
+
+    // довжина кола: C = 2 * pi * R
+    double getLength() {
+        return 2 * 3.1415926535 * radius;
+    }
+};
+
+int main() {
+    SetConsoleCP(65001);       
+    SetConsoleOutputCP(65001);
+
+    Circle c;           
+    double r;
+
+    std::cout << "Введіть радіус кола: ";
+    std::cin >> r;
+
+    c.setRadius(r);         
+
+    std::cout << std::fixed << std::setprecision(4);
+    std::cout << "\nРадіус (get-метод): " << c.getRadius() << "\n";
+    std::cout << "Площа круга: " << c.getArea() << "\n";
+    std::cout << "Довжина кола: " << c.getLength() << "\n";
+
+    return 0;
+}
