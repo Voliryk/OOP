@@ -1,0 +1,84 @@
+#include <iostream>
+#include <string>
+#include <windows.h>
+
+
+int toMinutes(std::string t) {
+    int pos = t.find(':');
+    int hours = std::stoi(t.substr(0, pos));
+    int minutes = std::stoi(t.substr(pos + 1));
+    return hours * 60 + minutes;
+}
+
+
+class Bus {
+private:
+    std::string name; // назва пункту призначення
+    int numer;        // номер рейсу
+    std::string date; // дата відправлення
+    std::string time; // час відправлення
+
+public:
+
+    void input() {
+        std::cout << "Пункт призначення: ";
+        std::cin >> name;
+        std::cout << "Номер рейсу: ";
+        std::cin >> numer;
+        std::cout << "Дата відправлення: ";
+        std::cin >> date;
+        std::cout << "Час відправлення: ";
+        std::cin >> time;
+    }
+
+    void print() {
+        std::cout << "Рейс №" << numer << " | " << name
+                  << " | " << date << " | " << time << "\n";
+    }
+
+    std::string getDate() {
+        return date;
+    }
+
+    std::string getTime() {
+        return time;
+    }
+};
+
+int main() {
+    SetConsoleCP(65001);
+    SetConsoleOutputCP(65001);
+
+    Bus busStation[100]; // масив об'єктів класу Bus
+    int n;
+    std::string searchDate;
+
+    std::cout << "Введіть кількість рейсів: ";
+    std::cin >> n;
+
+
+    for (int i = 0; i < n; i++) {
+        std::cout << "\nРейс №" << i + 1 << "\n";
+        busStation[i].input();
+    }
+
+    std::cout << "\nВведіть дату для пошуку: ";
+    std::cin >> searchDate;
+
+
+    std::cout << "\nРейси після 17:00 на " << searchDate << ":\n";
+    bool found = false;
+    for (int i = 0; i < n; i++) {
+        if (busStation[i].getDate() == searchDate &&
+            toMinutes(busStation[i].getTime()) > 17 * 60) {
+            busStation[i].print();
+            found = true;
+        }
+    }
+
+    if (!found) {
+        std::cout << "Таких рейсів немає.\n";
+    }
+
+    return 0;
+}
