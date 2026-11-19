@@ -1,0 +1,49 @@
+#include <iostream>
+#include <windows.h>
+#include <iomanip>
+
+
+class Ring {
+private:
+    double innerRadius;
+    double outerRadius;
+
+public:
+
+    void input() {
+        std::cout << "Внутрішній радіус: ";
+        std::cin >> innerRadius;
+        std::cout << "Зовнішній радіус: ";
+        std::cin >> outerRadius;
+    }
+
+    void print() {
+        std::cout << "Внутрішній радіус: " << innerRadius << "\n";
+        std::cout << "Зовнішній радіус: " << outerRadius << "\n";
+    }
+
+    double getArea() {
+        return 3.1415926535 * (outerRadius * outerRadius - innerRadius * innerRadius);
+    }
+
+    // товщина кільця
+    double getThickness() {
+        return outerRadius - innerRadius;
+    }
+};
+
+int main() {
+    SetConsoleCP(65001);
+    SetConsoleOutputCP(65001);
+
+    Ring ring;
+    ring.input();
+
+    std::cout << std::fixed << std::setprecision(4);
+    std::cout << "\nІнформація про кільце:\n";
+    ring.print();
+    std::cout << "Площа кільця: " << ring.getArea() << "\n";
+    std::cout << "Товщина кільця: " << ring.getThickness() << "\n";
+
+    return 0;
+}
