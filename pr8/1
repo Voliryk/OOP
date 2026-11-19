@@ -1,0 +1,119 @@
+#include <iostream>
+#include <string>
+#include <windows.h>
+
+
+enum scale { ounces, kilograms };
+
+
+class ZooAnimal {
+private:
+    std::string name;   // ім'я тварини
+    int cageNumber;     // номер клітки
+    int weightDate;     // дата останнього зважування (день року)
+    int weight;         // вага тварини у фунтах
+
+public:
+
+    ZooAnimal() {
+        name = "Nameless";
+        cageNumber = 9999;
+        weightDate = 101;
+        weight = 100;
+    }
+
+
+    ZooAnimal(std::string n, int cage, int date, int w) {
+        name = n;
+        cageNumber = cage;
+        weightDate = date;
+        weight = w;
+    }
+
+
+    ~ZooAnimal() {
+        name.clear();
+    }
+
+
+    void Create(std::string n, int cage, int date, int w) {
+        name = n;
+        cageNumber = cage;
+        weightDate = date;
+        weight = w;
+    }
+
+
+    void Destroy() {
+        name.clear();
+    }
+
+
+    void printName() {
+        std::cout << name;
+    }
+
+
+    void changeWeight(int pounds) {
+        weight = pounds;
+    }
+
+
+    void changeWeightDate(int today) {
+        weightDate = today;
+    }
+
+
+    std::string reptName() {
+        return name;
+    }
+
+
+    int reptWeight() {
+        return weight;
+    }
+
+
+    void reptWeight(scale which) {
+        if (which == kilograms) {
+            std::cout << weight * 0.4536 << " кг";
+        } else {
+            std::cout << weight * 16 << " унцій";
+        }
+    }
+
+    // повертає дату зважування
+    int reptWeightDate() {
+        return weightDate;
+    }
+
+    // кількість днів від останнього зважування
+    int daysSinceLastWeighed(int today) {
+        return today - weightDate;
+    }
+};
+
+int main() {
+    SetConsoleCP(65001);
+    SetConsoleOutputCP(65001);
+
+    ZooAnimal bozo("Bozo", 408, 1027, 400);
+
+    std::cout << "Ім'я тварини: ";
+    bozo.printName();
+    std::cout << "\n";
+    std::cout << "Дата останнього зважування: " << bozo.reptWeightDate() << "\n";
+    std::cout << "Вага: " << bozo.reptWeight() << " фунтів\n";
+    std::cout << "Вага у кілограмах: ";
+    bozo.reptWeight(kilograms);
+    std::cout << "\n";
+
+    std::cout << "Днів після зважування: " << bozo.daysSinceLastWeighed(1050) << "\n";
+
+    ZooAnimal nameless;
+    std::cout << "\nТварина за замовчуванням: ";
+    nameless.printName();
+    std::cout << ", вага: " << nameless.reptWeight() << " фунтів\n";
+
+    return 0;
+}
